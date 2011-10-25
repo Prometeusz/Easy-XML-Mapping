@@ -1,14 +1,15 @@
-                        
+
                         Easy XML Mapping
 
 Overview
+
 
 Easy XML Mapping is a Java library which helps user marshalling and
 unmarshalling Java object to and from XML files.
 It is mostly adequate for "complex" mappings.
 
 It takes different approach than current libraries. It is more like
-Castor mapping but using java instead. To some degree it takes is similar
+Castor mapping but using java instead. To some degree it takes similar
 approach like Spring JavaConfig, that is, instead of using XML files to
 define mapping for  application, user can use java for the same thing.
 
@@ -17,7 +18,9 @@ tag the user want to convert. Then it can register it in marshaller or in
 unmarshaller for usage. 
 
 
+
 Features:
+
 
 - user can have more than one converter for given object and choose at runtime
 which one to use.
@@ -27,11 +30,11 @@ which one to use.
 
 - it is quite flexible approach since the user choose how to convert given object.
 
-- user can register converters for more than one composite tag( tag with children ) for
+- user can register converters for more than one composite tag(tag with children) for
   given tag tree, and then receives in "parent" tag converter the output of "child" tag converter.
   This helps in decoupling the converters from each other, but you are free to chooses it or not.
 
-- tags are created when "needed" that is if you have a LOT tags with the same XML qualified name
+- tags are created when "needed" that is if you have a LOT of tags with the same XML qualified name
   and you do unmarshalling having converter registered on that tag then,
   tree model will be created for one tag (and his children) of this type.
   That is, during unmarshalling there will be only one tag tree not a LOT of them
@@ -44,12 +47,13 @@ which one to use.
 
 Motivation
 
+
 XmlAdapter(Java Binding) or FildHandler(Castor XML)... It the end, to 
 make "complex"(but not rare) mapping programmer ends up using some java "mapping" code.
 So, why not start with "this" from the very beginning? Well, there few reasons, why not:
 
-- you don't have XML Schema, but you have Java classes,
-- you have XML Schema or do not have Java classes,
+- you don't have XML Schema but you have Java classes,
+- you have XML Schema but you do not have Java classes,
 - your mapping "needs" are rather simple.
 
 If your problem falls in one of this cases you better be using different software if not,
