@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd" >
+
+    <info organisation="org.mysite" module="XMLAdaptiveMarshaller" />
+    <dependencies>
+        <!-- testing -->
+        <dependency org="junit" name="junit" rev="4.9" conf="default" />
+        <!-- Woodstox StaX impl -->
+        <dependency org="org.codehaus.woodstox" name="woodstox-core-lgpl" rev="4.1.2" conf="default" />
+        <!-- javasist -->
+        <dependency org="javassist" name="javassist" rev="3.12.1.GA"/>
+    </dependencies>
+</ivy-module>
+

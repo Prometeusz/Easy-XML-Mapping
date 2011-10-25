@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<project name="EasyXMLMapping" default="clean-build">
+
+    <!-- ivy tasks for dependecy resolving --> 
+    <import file="setup/ivy-targets.xml" />
+
+    <!-- jswat debug tasks -->
+    <import file="setup/jswat-debug-targets.xml" />
+
+
+    <!-- properties definition -->
+
+    <property file="common.properties"/> 
+
+    <!-- this property can be pass from command line to test one class -->
+    <property name="test.class.name" value="" />
+
+
+    <property environment="env"/>
+    
+
+    <!-- classpath definition -->
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <exclude name="**/easymock*.jar"/>
+            <exclude name="**/junit*.jar"/>
+        </fileset>
+    </path>
+
+    
+    
+    <path id="classpath-test">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <pathelement location="${build.classes.dir}" />
+    </path>
+
+
+    <!-- common targetes -->
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="clean-build" depends="clean,jar"/>
+
+
+
+    <target name="compile" depends="resolve">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="classpath" includeantruntime="false" debug="${javac.debug}" />
+        <!-- copy cofig files ( if any ) -->
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+    <target name="compile-test" depends="compile">
+        <javac srcdir="${test.src.dir}" destdir="${build.classes.dir}" classpathref="classpath-test" includeantruntime="false" debug="${javac.debug}" />
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${test.src.dir}" excludes="**/*.java"/>
+        </copy>
+    </target>
+
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/${module.name}.jar" basedir="${build.classes.dir}" />
+    </target>
+
+    <!-- compile and package with tests -->
+    <target name="jar-test" depends="compile-test,jar" description=" ---> Make a jar with test included." />
+
+
+
+    <!-- JavaDoc target -->
+
+    <target name="javadoc">
+        <delete dir="${javadoc.dir}" />
+        <javadoc destdir="${javadoc.dir}" author="true" version="true" use="true" windowtitle="XML Adaptive Marshaller API">
+
+            <fileset dir="${src.dir}" defaultexcludes="yes">
+            </fileset>
+
+            <doctitle><![CDATA[<h1>Easy XML Mapping</h1>]]></doctitle>
+            <tag name="todo" scope="all" description="To do:"/>
+            <link href="http://download.oracle.com/javase/7/docs/api" />
+        </javadoc>
+    </target>
+
+
+    <!-- JUnit targets -->
+
+    <target name="junit-all" depends="compile-test" description=" ---> Execute all junit tests.">
+
+        <delete dir="${test.report.dir}" />
+        <mkdir dir="${test.report.dir}" />
+        <junit printsummary="withOutAndErr" fork="yes" forkmode="perBatch">
+            <classpath>
+                <path refid="classpath-test"/>
+            </classpath>
+
+            <formatter type="xml"/>
+
+            <batchtest todir="${test.report.dir}">
+                <fileset dir="${build.classes.dir}" includes="**/*Test.class"/>
+            </batchtest>
+        </junit>
+
+        <antcall target="junitreport" />
+    </target>
+
+    <target name="test-one-class" depends="compile-test" description=" ---> Test only one class. Set -Dtest.class.name=... from command line.">
+
+        <delete dir="${test.report.dir}" />
+        <mkdir dir="${test.report.dir}" />
+        <junit printsummary="withOutAndErr" fork="yes" >
+            <classpath>
+                <path refid="classpath-test"/>
+            </classpath>
+
+            <formatter type="xml"/>
+            
+            <test name="${test.class.name}" todir="${test.report.dir}" />
+        </junit>
+
+        <antcall target="junitreport" />
+        
+    </target>
+    
+    <target name="junitreport">
+        <junitreport todir="${test.report.dir}">
+            <fileset dir="${test.report.dir}" includes="TEST-*.xml"/>
+            <report format="frames" todir="${test.report.dir}"/>
+        </junitreport>
+    </target>
+
+
+</project>

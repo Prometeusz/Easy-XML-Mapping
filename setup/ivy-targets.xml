@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ivy-tasks">
+
+    <!-- this targets should be importet by main ant build file -->
+
+    <!-- testing property, try to make it external
+         this is done to avoid ant junit task unneeded retrieve
+         output -->
+    <property name="ivy.resolved" value="true" />
+
+    <target name="resolve" unless="ivy.resolved" description=" ---> Resolve dependencies. To prevent resolving them more than once set -Divy.resolved to true.">
+    
+        <ivy:retrieve pattern="${lib.dir}/[artifact]-[revision].[ext]" />
+    </target>
+
+    <target name="report" depends="resolve">
+        <ivy:report todir="${build.dir}"/>
+    </target>
+
+
+</project>

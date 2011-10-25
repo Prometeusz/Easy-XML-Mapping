@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jswat-debug-targets">
+    <!-- this file should be imported by main build file 
+        -->
+    <target name="debug-jswat" depends="compile-test" description=" ---> Execute JSwat to debug program. You can set JSwat main class -Djswat.main.class and JSwat main class arguments -Djswat.main.class.args. By default jswat.main.class points to JUnit runner.">
+            <!-- this property should refer to main ant build file
+                -->
+            <property name="cp" refid="classpath-test" />
+
+            <!-- debug files properties -->
+
+            <!-- path to jswat launch script -->
+            <property name="jswat" value="jswat" />
+
+            <!-- main class for jswat to launch, by default it is JUnit runner
+                 -->
+            <property name="jswat.main.class" value="org.junit.runner.JUnitCore" />
+
+            <!-- this property should be passed as command line arg -->
+            <property name="jswat.main.class.args" value="" />
+
+
+            <exec executable="${jswat}">
+            	<arg value="-J-Djswat.classpath='${cp}'" />
+                <arg value="-J-Djswat.sourcepath='${src.dir}:${test.src.dir}'"/>
+                <!-- YOU HAVE TO PUT jswat.main.class.args in '' -->
+                <arg value="-J-Djswat.launch='${jswat.main.class}' '${jswat.main.class.args}'"/>
+                <!--                <arg line="-J-Djswat.jvmopts='${cmd.line.arg.config} ${cmd.line.arg.logging}'"/> -->
+            </exec>
+    </target>
+</project>

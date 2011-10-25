@@ -1,0 +1,22 @@
+
+                INSTALL
+
+To build this library from source, you need:
+
+- ant
+- ivy (you do not need ivy if you manually downloaded dependencies
+  and set: ivy.resolved=true in common.properties file)
+
+then type in directory with sources:
+
+ant
+
+the files should appear in dist directory.
+
+Required libraries:
+
+- implementation of StaX streaming appi (for ex. Woodstox)
+- javassist
+
+
+to run test you need also JUnit 4.x or later.

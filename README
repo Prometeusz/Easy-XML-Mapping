@@ -1,0 +1,78 @@
+                        
+                        Easy XML Mapping
+
+Overview
+
+Easy XML Mapping is a Java library which helps user marshalling and
+unmarshalling Java object to and from XML files.
+It is mostly adequate for "complex" mappings.
+
+It takes different approach than current libraries. It is more like
+Castor mapping but using java instead. To some degree it takes is similar
+approach like Spring JavaConfig, that is, instead of using XML files to
+define mapping for  application, user can use java for the same thing.
+
+In Easy XML Mapping user specify a set of "converters" for every object and
+tag the user want to convert. Then it can register it in marshaller or in
+unmarshaller for usage. 
+
+
+Features:
+
+- user can have more than one converter for given object and choose at runtime
+which one to use.
+
+- user have access to tags by "tree model" which represents XML file.
+  By doing this User classes are decoupled from underlying "parsing" facility.
+
+- it is quite flexible approach since the user choose how to convert given object.
+
+- user can register converters for more than one composite tag( tag with children ) for
+  given tag tree, and then receives in "parent" tag converter the output of "child" tag converter.
+  This helps in decoupling the converters from each other, but you are free to chooses it or not.
+
+- tags are created when "needed" that is if you have a LOT tags with the same XML qualified name
+  and you do unmarshalling having converter registered on that tag then,
+  tree model will be created for one tag (and his children) of this type.
+  That is, during unmarshalling there will be only one tag tree not a LOT of them
+  for given tag which have registered converter.
+
+- it is possible to change ordering of tag children during runtime. Default is the order of
+  addition.
+
+
+
+Motivation
+
+XmlAdapter(Java Binding) or FildHandler(Castor XML)... It the end, to 
+make "complex"(but not rare) mapping programmer ends up using some java "mapping" code.
+So, why not start with "this" from the very beginning? Well, there few reasons, why not:
+
+- you don't have XML Schema, but you have Java classes,
+- you have XML Schema or do not have Java classes,
+- your mapping "needs" are rather simple.
+
+If your problem falls in one of this cases you better be using different software if not,
+you might give this puppy a try. ;]
+
+
+
+Copyright
+
+
+Copyright (C) 2011 Marta Spodymek
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301
+USA.
