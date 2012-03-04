@@ -54,14 +54,12 @@ public class Mapping<T> implements IMapping<T> {
 	public Mapping() {
 	}
 
-	
-	
+
+
 	/*
 	 * Public Methods ***^_^***
 	 */
 
-
-	
 	public Mapping(IMarshallerConverter<T> converter) {
 		this.converter = converter;
 	}
@@ -271,8 +269,6 @@ public class Mapping<T> implements IMapping<T> {
 	 * Private Methods ***^_^***
 	 */
 
-	
-	
 	/*
 	 * One parent for a node.
 	 */

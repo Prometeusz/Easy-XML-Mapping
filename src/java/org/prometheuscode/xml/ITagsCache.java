@@ -50,11 +50,6 @@ public interface ITagsCache {
 
 
 
-	// int getFreeSlotsForSimpleTag(IXMLQName simpleTagName);
-	//
-	// int getFreeSlotsForComposisteTag(IXMLQName composisteTagName);
-	//
-
 	/**
 	 * Updates the number of simple tags which are free in cache per tag
 	 * qualified name.

@@ -169,7 +169,7 @@ public class XMLStaXAdaptiveUnmarshallerTest {
 		 * Test
 		 */
 		InputStream testInputStream = XMLStaXAdaptiveUnmarshallerTest.class.getResourceAsStream(fullPathToXMLTestFile);
-		long before = System.currentTimeMillis();
+		//long before = System.currentTimeMillis();
 		Map<IXMLQName, List<Object>> convertedObjs = testAdaptiveUnmarshaller.unmarshal(testInputStream);
 		//System.out.print("Speed of cache: BUUUUUUUUUUUUUUUM: " + (System.currentTimeMillis() - before) + "\n");
 

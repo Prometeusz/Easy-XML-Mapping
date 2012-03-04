@@ -275,8 +275,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 
 			IMapping<Object> mapping = (IMapping<Object>) todoMappings.removeFirst();
 
-			// System.out.print("Current clazz: "
-			// +currentClass.getCanonicalName() + "\n");
 			IMarshallerConverter<Object> converter = (IMarshallerConverter<Object>) this.getConverterFromClass(currentClass, convertableAnnotation);
 			mapping.setConverter(converter);
 
@@ -485,12 +483,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 			currentObjectToConvert = parentsList.getFirst();
 			currentKey = this.getMappingKey(currentMapping, currentObjectToConvert);
 
-			// System.out.print("Current mapping type is: " +
-			// currentMapping.getMappingType() + "\n");
-			// System.out.print("Current parent mapping type is: " +
-			// currentMapping.getParentMapping().getMappingType() + "\n");
-			// System.out.print("Current key is: " + currentKey + "\n");
-
 			if (!currentMapping.getMappingType().equals(MappingType.Object)) {
 				boolean wasPushed = this.pushNewObjectFromContainer(currentObjectToConvert, currentMapping, parentsList, tmpConvertedChildrenObjs);
 				if (wasPushed) {
@@ -663,8 +655,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 	 */
 	private void updateParentsConvertedChildren(Map<String, Map<String, IXMLTag>> convertedChildren, Object parentObject, IMapping<?> mapping, String mapsKey, IXMLTag tag) {
 		String parentKey = this.getMappingKey(mapping.getParentMapping(), parentObject);
-		// System.out.print("this is parent key in updateParentsConvertedChildren method:"
-		// + parentKey + "\n");
 		String methodName = mapping.getMappedMethodName();
 		/*
 		 * Init parent entry in a map if does not exist
@@ -816,8 +806,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 			primitiveKey = parentsList.removeFirst().toString();
 		}
 
-		// System.out.print("Key in handleEmptyContainer: " + currentKey +
-		// "\n");
 		Map<String, IXMLTag> convertedTagsForContainer = tmpConvertedChildrenObjs.get(currentKey);
 		IXMLTag tag = convertedTagsForContainer.get(currentMappedMethod);
 		if (!(parentsList.isEmpty())) {
@@ -886,7 +874,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 				 */
 				this.writeXMLTag(writer, currentCompositeRoot);
 
-				// System.out.print(currentCompositeName + "\n");
 				currentCompositeTags = currentCompositeRoot.getAllCompositeTags();
 				currentSimpleTags = currentCompositeRoot.getAllSimpleTags();
 
@@ -929,8 +916,6 @@ class XMLStaXAdaptiveMarshaller implements IXMLAdaptiveMarshaller {
 					break;
 				}
 
-				// System.out.print("Im writing compositetag end" +
-				// currentCompositeName + "\n");
 				compositeTagsToWrite.put(currentCompositeName, null);
 				simpleTagsToWrite.put(currentCompositeName, null);
 

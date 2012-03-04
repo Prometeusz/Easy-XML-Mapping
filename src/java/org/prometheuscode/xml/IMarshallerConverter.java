@@ -20,7 +20,6 @@ package org.prometheuscode.xml;
 
 import java.util.Map;
 
-import org.prometheuscode.xml.treemodel.ICompositeTag;
 import org.prometheuscode.xml.treemodel.IXMLTag;
 
 /**
@@ -45,7 +44,6 @@ public interface IMarshallerConverter<T> {
 	 *            getter method and converter mapping was registered. 
 	 *            Key is a method name, value is converted object as IXMLTag.
 	 * 
-	 * @TODO Try to change return value to simple IXMLTag
 	 */
 	IXMLTag convert(T objectToConvert, Map<String, IXMLTag> convertedObjects);
 }

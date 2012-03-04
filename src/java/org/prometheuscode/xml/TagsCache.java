@@ -38,12 +38,10 @@ public class TagsCache implements ITagsCache {
 
 	private Map<IXMLQName, Integer> simpleTagsFreeSlots = new HashMap<IXMLQName, Integer>();
 
-	
 	private Map<IXMLQName, LinkedList<IXMLTag>> compositeTagsCache = new HashMap<IXMLQName, LinkedList<IXMLTag>>();
 
 	private Map<IXMLQName, Integer> compositeTagsFreeSlots = new HashMap<IXMLQName, Integer>();
 
-	
 	private IXMLTreeModelFactory treeModelFactory = new XMLTreeModelFactory();
 
 

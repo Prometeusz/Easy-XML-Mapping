@@ -54,7 +54,6 @@ public class Utils {
 		};
 
 		String searchName = "/" + packageName.replace(".", "/");
-		// System.out.print("searchName: " + searchName + "\n");
 		URL dirName = Utils.class.getResource(searchName);
 		if (dirName == null) {
 			throw new IllegalArgumentException("Given package name does not exist");

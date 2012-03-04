@@ -342,7 +342,7 @@ public class XMLStaXAdaptiveMarshallerTest {
 
 		IXMLAdaptiveMarshaller testMarshaller = new XMLStaXAdaptiveMarshaller();
 
-		long before = System.currentTimeMillis();
+		//long before = System.currentTimeMillis();
 		IMapping<SampleClassForMarshaller> testMapping = (IMapping<SampleClassForMarshaller>) testMarshaller.createMapping(rootClass);
 		//System.out.print("time for normal: " + (System.currentTimeMillis() - before) + "\n");
 
@@ -380,9 +380,9 @@ public class XMLStaXAdaptiveMarshallerTest {
 		 * TODO remove
 		 */
 		Class<SampleClassForMarshaller> speedClazz = SampleClassForMarshaller.class;
-		before = System.currentTimeMillis();
+		//before = System.currentTimeMillis();
 		IMapping<SampleClassForMarshaller> mappingDependee = (IMapping<SampleClassForMarshaller>) testMarshaller.createMapping(speedClazz);
-		System.out.print("time for fast: " + (System.currentTimeMillis() - before) + "\n");
+		//System.out.print("time for fast: " + (System.currentTimeMillis() - before) + "\n");
 
 	}
 

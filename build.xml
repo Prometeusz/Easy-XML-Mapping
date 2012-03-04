@@ -29,6 +29,7 @@
             <exclude name="**/easymock*.jar"/>
             <exclude name="**/junit*.jar"/>
         </fileset>
+    	<pathelement location="${build.classes.dir}" />
     </path>
 
     
@@ -49,7 +50,7 @@
 
 
 
-    <target name="compile" depends="resolve">
+    <target name="compile">
         <mkdir dir="${build.classes.dir}"/>
         <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="classpath" includeantruntime="false" debug="${javac.debug}" />
         <!-- copy cofig files ( if any ) -->

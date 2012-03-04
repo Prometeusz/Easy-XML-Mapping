@@ -236,8 +236,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 		for (String packageName : packages) {
 			File[] packageFiles = Utils.getClassFilesFromPackage(packageName);
 
-			// System.out.print("# of files in package: " + packageFiles.length
-			// + "\n");
 			/* inspect class files */
 			for (File file : packageFiles) {
 				if (file.isDirectory()) {
@@ -250,8 +248,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				// System.out.print("class name after javassist: " +
-				// clazzToCheck.getName() + "\n");
 
 				/* check if it implements interface */
 				if (!(this.isImplementingInterface(clazzToCheck, converterInterface))) {
@@ -476,8 +472,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 		Map<IXMLQName, String> tmpAttributes = new HashMap<IXMLQName, String>();
 		Map<String, String> tmpNamespaces = new HashMap<String, String>();
 		while (!(this.moveToNextTag(reader) == END_DOCUMENT)) {
-			// System.out.print("Event type AFTER loop begin " +
-			// reader.getEventType() + "\n");
 			/*
 			 * If processing of current composite tag is done change current
 			 * parent and update the depth. Move "up the tree".
@@ -495,8 +489,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 			 * </composite-parent>
 			 */
 			if (this.isThisEndTagOfCurrentParent(reader, currentParent)) {
-				// System.out.print("I have changed parent to: " +
-				// currentParent.getParent().getName() + "\n");
 
 				relativeCurrentDepth--;
 				if (!(getAllModelWithoutConversion)) {
@@ -510,8 +502,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 				 * 
 				 * Also we can update cache free slots.
 				 */
-				// System.out.print("Current depth " + relativeCurrentDepth +
-				// "\n");
 				if (relativeCurrentDepth == 0) {
 					shouldCreateTreeModel = false;
 					tagsCache.updateCompositeTagsFreeSlots();
@@ -568,8 +558,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 		Object convertedObj = null;
 		if (converter != null) {
 			Map<IXMLQName, List<Object>> convertedObjs = tmpConvertedChildren.get(compositeTagName);
-			// System.out.print("Map passed to CONVERTER: " + convertedObjs +
-			// "\n");
 			convertedObj = converter.convert(compositeTag, convertedObjs);
 
 			/*
@@ -654,11 +642,6 @@ class XMLStaXAdaptiveUnmarshaller implements IXMLAdaptiveUnmarshaller {
 		IXMLTag tagToReturn = null;
 
 		this.processTagProperites(reader, attributes, namespaces);
-		/*
-		 * System.out.print(reader.getName() + "\n");
-		 * System.out.print("attributes  " + attributes + "\n");
-		 * System.out.print("namespaces  " + namespaces + "\n");
-		 */
 
 		if (this.isThisEventSimpleTag(reader)) {
 			/*
